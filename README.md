@@ -1,16 +1,163 @@
-# React + Vite
+# 📋 Trackify — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> A role-based workflow task management system. Built like a mini Jira — where users submit tasks and admins approve, reject, or manage them through a multi-stage lifecycle.
 
-Currently, two official plugins are available:
+🔗 **Live Demo:** [trackify-frontend-seven.vercel.app](https://trackify-frontend-seven.vercel.app)
+🔗 **Backend Repo:** [trackify-backend](https://github.com/talhajamshaid/trackify-backend)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🚀 What is Trackify?
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+Trackify is a company-style task workflow system with two roles:
 
-## Expanding the ESLint configuration
+- **Admin** — approves/rejects tasks, manages users, views all task history
+- **User** — registers, submits daily tasks, tracks their status
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+This is not a simple CRUD app. It implements a **real-world multi-stage task lifecycle** with role-based access control — the kind of system companies actually use.
+
+---
+
+## ✨ Features
+
+### 👤 User Panel
+
+- Register & Login
+- Submit daily tasks (status starts as `Pending Approval`)
+- View task status updates in real time
+- Move approved tasks to `In Progress` → `Completed`
+- Change password
+- Update profile (name, phone, address — email locked)
+
+### 🛠️ Admin Panel
+
+- Dashboard with tasks overview
+- Approve or reject tasks (with comments)
+- Assign tasks to users
+- Activate / deactivate user accounts
+- View full task history for all users
+
+### 🔐 Auth System
+
+- JWT-based authentication
+- Protected routes (role-based)
+- Forgot password / reset via email
+- First registered user becomes admin automatically
+
+---
+
+## 🧱 Task Lifecycle
+
+```
+User Submits Task
+       ↓
+  Pending Approval
+       ↓
+Admin Approves / Rejects
+       ↓
+   In Progress   (user updates)
+       ↓
+   Completed
+```
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology        | Purpose               |
+| ----------------- | --------------------- |
+| React + Vite      | Frontend framework    |
+| Tailwind CSS      | Styling               |
+| shadcn/ui         | UI components         |
+| MUI (Material UI) | Additional components |
+| Redux Toolkit     | State management      |
+| React Router DOM  | Client-side routing   |
+| Axios             | API calls             |
+
+---
+
+## 📁 Project Structure
+
+```
+src/
+├── components/
+│   ├── Modals/          # CreateTaskModal, TaskDetailsModal, etc.
+│   ├── pagination/
+│   ├── AuthLayout.jsx
+│   ├── Header.jsx
+│   ├── Sidebar.jsx
+│   ├── ProtectedRoute.jsx
+│   └── PublicRoute.jsx
+├── layouts/
+│   └── MainLayout.jsx
+├── pages/
+│   ├── Admin/           # Dashboard, TaskManage, UserRequest, TaskHistory
+│   ├── Auth/            # Login, Register, Forgot, Reset, OTP
+│   └── User/            # Dashboard, MyTasks
+├── redux/               # Store, slices
+└── config/              # Axios config, env
+```
+
+---
+
+## ⚙️ Getting Started (Local)
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/talhajamshaid/trackify-frontend.git
+cd trackify-frontend
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Setup environment variables
+
+Create a `.env` file in the root:
+
+```env
+VITE_SERVER_URL=http://localhost:5000/api
+```
+
+### 4. Run the app
+
+```bash
+npm run dev
+```
+
+App will run at `http://localhost:5173`
+
+---
+
+## 🌍 Environment Variables
+
+| Variable          | Description          |
+| ----------------- | -------------------- |
+| `VITE_SERVER_URL` | Backend API base URL |
+
+---
+
+## 👤 First Time Setup
+
+1. Open the live app
+2. Click **Register** — the first registered user becomes **Admin** automatically
+3. Login as admin and start managing users and tasks
+
+---
+
+## 📦 Build for Production
+
+```bash
+npm run build
+```
+
+---
+
+## 🤝 Related
+
+- **Backend Repo:** [trackify-backend](https://github.com/talhajamshaid/trackify-backend)
+- **Deployed on:** Vercel
