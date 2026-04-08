@@ -71,8 +71,8 @@ Admin Approves / Rejects
 | shadcn/ui         | UI components         |
 | MUI (Material UI) | Additional components |
 | Redux Toolkit     | State management      |
+| RTK Query         | API calls & caching   |
 | React Router DOM  | Client-side routing   |
-| Axios             | API calls             |
 
 ---
 
